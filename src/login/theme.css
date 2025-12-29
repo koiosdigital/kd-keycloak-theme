@@ -1,0 +1,1048 @@
+/* KOIOS DIGITAL - Keycloak Theme
+ * Nuxt UI-inspired styling with brand orange + zinc
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+:root {
+    /* Brand Orange Primary (derived from #D4872C) */
+    --color-primary-50: #fef7ee;
+    --color-primary-100: #fdecd8;
+    --color-primary-200: #fad5b0;
+    --color-primary-300: #f6b87e;
+    --color-primary-400: #f1924a;
+    --color-primary-500: #d4872c;
+    --color-primary-600: #c06a1a;
+    --color-primary-700: #9f5118;
+    --color-primary-800: #80421b;
+    --color-primary-900: #693819;
+    --color-primary-950: #391b0b;
+
+    /* Zinc Neutral */
+    --color-neutral-50: #fafafa;
+    --color-neutral-100: #f4f4f5;
+    --color-neutral-200: #e4e4e7;
+    --color-neutral-300: #d4d4d8;
+    --color-neutral-400: #a1a1aa;
+    --color-neutral-500: #71717a;
+    --color-neutral-600: #52525b;
+    --color-neutral-700: #3f3f46;
+    --color-neutral-800: #27272a;
+    --color-neutral-900: #18181b;
+    --color-neutral-950: #09090b;
+
+    /* Semantic colors */
+    --color-error: #ef4444;
+    --color-success: #22c55e;
+    --color-warning: #f59e0b;
+    --color-info: #3b82f6;
+}
+
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+}
+
+/* Body styling with dark background */
+body.kcBodyClass {
+    background-color: var(--color-neutral-950);
+    min-height: 100vh;
+    font-family:
+        "Inter",
+        system-ui,
+        -apple-system,
+        sans-serif;
+    color: var(--color-neutral-100);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Main login container */
+.kcLoginClass {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* ========================================
+   Animated Background Blobs
+   ======================================== */
+.background-blobs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    animation: blob-float 20s ease-in-out infinite;
+}
+
+.blob-1 {
+    width: 600px;
+    height: 600px;
+    background: var(--color-primary-500);
+    top: -200px;
+    left: -100px;
+    animation-delay: 0s;
+}
+
+.blob-2 {
+    width: 500px;
+    height: 500px;
+    background: var(--color-primary-700);
+    bottom: -150px;
+    right: -100px;
+    animation-delay: -7s;
+}
+
+.blob-3 {
+    width: 400px;
+    height: 400px;
+    background: var(--color-primary-400);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: -14s;
+}
+
+@keyframes blob-float {
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(30px, -50px) scale(1.05);
+    }
+    50% {
+        transform: translate(-20px, 20px) scale(0.95);
+    }
+    75% {
+        transform: translate(50px, 30px) scale(1.02);
+    }
+}
+
+.blob-3 {
+    animation-name: blob-float-center;
+}
+
+@keyframes blob-float-center {
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    25% {
+        transform: translate(-45%, -55%) scale(1.1);
+    }
+    50% {
+        transform: translate(-55%, -45%) scale(0.9);
+    }
+    75% {
+        transform: translate(-48%, -52%) scale(1.05);
+    }
+}
+
+/* ========================================
+   Language Selector
+   ======================================== */
+.language-selector {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.language-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--color-neutral-800);
+    border: 1px solid var(--color-neutral-700);
+    border-radius: 8px;
+    color: var(--color-neutral-300);
+    font-size: 0.875rem;
+    font-family: inherit;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.language-button:hover {
+    background: var(--color-neutral-700);
+    border-color: var(--color-neutral-600);
+}
+
+.language-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    background: var(--color-neutral-800);
+    border: 1px solid var(--color-neutral-700);
+    border-radius: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 4px;
+    min-width: 140px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.language-dropdown li {
+    margin: 0;
+}
+
+.language-dropdown a {
+    display: block;
+    padding: 8px 12px;
+    color: var(--color-neutral-300);
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    transition: all 0.15s ease;
+}
+
+.language-dropdown a:hover {
+    background: var(--color-neutral-700);
+    color: var(--color-neutral-100);
+    text-decoration: none;
+}
+
+.language-dropdown a.active {
+    background: var(--color-primary-500);
+    color: white;
+}
+
+/* ========================================
+   Main Content Layout
+   ======================================== */
+.login-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Logo */
+.logo-wrapper {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.logo {
+    height: 40px;
+    margin-right: -25px;
+    width: auto;
+}
+
+/* Page header - outside card */
+.page-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.page-title {
+    color: var(--color-neutral-100);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+}
+
+.required-hint {
+    color: var(--color-neutral-400);
+    font-size: 0.8125rem;
+    margin: 0;
+}
+
+.required-hint .required {
+    color: var(--color-error);
+}
+
+.attempted-username {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.attempted-username span {
+    color: var(--color-neutral-100);
+    font-weight: 500;
+}
+
+.attempted-username a {
+    color: var(--color-primary-400);
+    font-size: 0.875rem;
+}
+
+/* ========================================
+   Form Card
+   ======================================== */
+.form-card {
+    width: 100%;
+    background: var(--color-neutral-900);
+    border: 1px solid var(--color-neutral-800);
+    border-radius: 16px;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    padding: 28px;
+}
+
+/* Form groups */
+.kcFormGroupClass,
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Label wrapper - contains label and required asterisk */
+.kcLabelWrapperClass {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    /* Asterisk inherits this color */
+    color: var(--color-error);
+}
+
+/* Labels */
+.kcLabelClass,
+label {
+    display: block;
+    color: var(--color-neutral-300);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+/* Label inside wrapper - reset margin and ensure neutral color */
+.kcLabelWrapperClass .kcLabelClass {
+    margin-bottom: 0;
+    color: var(--color-neutral-300);
+}
+
+/* Input wrapper */
+.kcInputWrapperClass {
+    position: relative;
+}
+
+/* Input fields */
+.kcInputClass,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    background: var(--color-neutral-800);
+    border: 1px solid var(--color-neutral-700);
+    border-radius: 8px;
+    color: var(--color-neutral-100);
+    font-size: 0.9375rem;
+    padding: 12px 16px;
+    transition: all 0.2s ease;
+    outline: none;
+    font-family: inherit;
+}
+
+.kcInputClass::placeholder,
+input::placeholder {
+    color: var(--color-neutral-500);
+}
+
+.kcInputClass:hover,
+input:hover,
+select:hover,
+textarea:hover {
+    border-color: var(--color-neutral-600);
+}
+
+.kcInputClass:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 3px rgba(212, 135, 44, 0.15);
+}
+
+/* ========================================
+   Nuxt UI Style Checkbox
+   ======================================== */
+.kcCheckboxInputClass,
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    flex-shrink: 0;
+    background: var(--color-neutral-800);
+    border: 1px solid var(--color-neutral-600);
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.15s ease;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.kcCheckboxInputClass:hover,
+input[type="checkbox"]:hover {
+    border-color: var(--color-neutral-500);
+    background: var(--color-neutral-700);
+}
+
+.kcCheckboxInputClass:checked,
+input[type="checkbox"]:checked {
+    background: var(--color-primary-500);
+    border-color: var(--color-primary-500);
+}
+
+.kcCheckboxInputClass:checked::after,
+input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.kcCheckboxInputClass:focus,
+input[type="checkbox"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(212, 135, 44, 0.2);
+}
+
+/* ========================================
+   Nuxt UI Style Radio
+   ======================================== */
+input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    flex-shrink: 0;
+    background: var(--color-neutral-800);
+    border: 1px solid var(--color-neutral-600);
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.15s ease;
+    vertical-align: middle;
+    margin: 0;
+}
+
+input[type="radio"]:hover {
+    border-color: var(--color-neutral-500);
+    background: var(--color-neutral-700);
+}
+
+input[type="radio"]:checked {
+    background: var(--color-neutral-800);
+    border-color: var(--color-primary-500);
+    border-width: 2px;
+}
+
+input[type="radio"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background: var(--color-primary-500);
+    border-radius: 50%;
+}
+
+input[type="radio"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(212, 135, 44, 0.2);
+}
+
+/* Radio button container - input and label are siblings */
+.pf-c-radio,
+.kcInputClassRadio {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.pf-c-radio__input,
+.kcInputClassRadioInput {
+    order: 0;
+}
+
+.pf-c-radio__label,
+.kcInputClassRadioLabel {
+    order: 1;
+    margin: 0;
+    color: var(--color-neutral-300);
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+/* Checkbox container - same structure */
+.pf-c-check,
+.kcInputClassCheckbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.pf-c-check__input,
+.kcInputClassCheckboxInput {
+    order: 0;
+}
+
+.pf-c-check__label,
+.kcInputClassCheckboxLabel {
+    order: 1;
+    margin: 0;
+    color: var(--color-neutral-300);
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+/* Generic label containing radio/checkbox (inline pattern) */
+label:has(> input[type="radio"]),
+label:has(> input[type="checkbox"]) {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+/* ========================================
+   Form Options (Remember me / Forgot password)
+   ======================================== */
+
+/* Login page: wrapper containing remember me + forgot password */
+.kcFormSettingClass {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+    margin-bottom: 16px;
+}
+
+/* Remember me container */
+#kc-form-options {
+    display: flex;
+    align-items: center;
+}
+
+#kc-form-options .checkbox {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+#kc-form-options .checkbox label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    color: var(--color-neutral-400);
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+/* Forgot password link container */
+.kcFormOptionsWrapperClass {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.kcFormOptionsWrapperClass a {
+    color: var(--color-primary-400);
+    font-size: 0.875rem;
+}
+
+/* Register page: back to login link - center and add spacing */
+.kcFormOptionsClass {
+    margin-bottom: 16px;
+}
+
+.kcFormOptionsClass .kcFormOptionsWrapperClass {
+    justify-content: center;
+    width: 100%;
+}
+
+/* Primary button */
+.kcButtonPrimaryClass,
+.kcButtonClass,
+input[type="submit"],
+button[type="submit"] {
+    width: 100%;
+    background: var(--color-primary-500);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.kcButtonPrimaryClass:hover,
+.kcButtonClass:hover,
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+    background: var(--color-primary-600);
+    transform: translateY(-1px);
+}
+
+.kcButtonPrimaryClass:active,
+input[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* Secondary/Default button */
+.kcButtonDefaultClass {
+    background: var(--color-neutral-800);
+    border: 1px solid var(--color-neutral-700);
+    color: var(--color-neutral-100);
+}
+
+.kcButtonDefaultClass:hover {
+    background: var(--color-neutral-700);
+    border-color: var(--color-neutral-600);
+}
+
+/* Links */
+a {
+    color: var(--color-primary-400);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--color-primary-300);
+    text-decoration: underline;
+}
+
+.try-another-way {
+    display: block;
+    text-align: center;
+    margin-top: 16px;
+    font-size: 0.875rem;
+}
+
+/* ========================================
+   Social/Identity Provider Buttons
+   ======================================== */
+
+/* Hide HR elements in social section */
+hr {
+    display: none !important;
+}
+
+#kc-social-providers {
+    margin-top: 20px;
+    padding-top: 0;
+}
+
+/* Social provider section heading */
+#kc-social-providers h2 {
+    display: flex;
+    align-items: center;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-neutral-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 16px 0;
+}
+
+#kc-social-providers h2::before,
+#kc-social-providers h2::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--color-neutral-700);
+}
+
+#kc-social-providers h2::before {
+    margin-right: 12px;
+}
+
+#kc-social-providers h2::after {
+    margin-left: 12px;
+}
+
+/* Social list */
+#kc-social-providers ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Social provider list items */
+#kc-social-providers ul li,
+.kcFormSocialAccountListItemClass {
+    margin-bottom: 12px;
+    list-style: none;
+}
+
+#kc-social-providers ul li:last-child,
+.kcFormSocialAccountListItemClass:last-child {
+    margin-bottom: 0;
+}
+
+/* Social provider button styling */
+.kcFormSocialAccountLinkClass,
+.kcFormSocialAccountSectionClass a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: var(--color-neutral-800);
+    border: 1px solid var(--color-neutral-700);
+    border-radius: 8px;
+    color: var(--color-neutral-100);
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 10px 16px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.kcFormSocialAccountLinkClass:hover,
+.kcFormSocialAccountSectionClass a:hover {
+    background: var(--color-neutral-700);
+    border-color: var(--color-neutral-600);
+    text-decoration: none;
+}
+
+/* Social provider icons - Font Awesome */
+.kcCommonLogoIdP,
+.kc-social-provider-logo {
+    font-size: 1.125rem;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Provider name text */
+.kc-social-provider-name,
+.kcFormSocialAccountNameClass {
+    flex: 1;
+}
+
+/* Icon text wrapper */
+.kc-social-icon-text {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Alert messages */
+.alert {
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    font-size: 0.875rem;
+}
+
+.alert-error,
+.alert-danger {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    color: #fca5a5;
+}
+
+.alert-warning {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    color: #fcd34d;
+}
+
+.alert-success {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.25);
+    color: #86efac;
+}
+
+.alert-info {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    color: #93c5fd;
+}
+
+/* Info section - outside card */
+.info-section {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--color-neutral-400);
+    font-size: 0.875rem;
+}
+
+.info-section a {
+    color: var(--color-primary-400);
+}
+
+/* Registration link */
+#kc-registration {
+    margin-top: 16px;
+    text-align: center;
+}
+
+#kc-registration span {
+    color: var(--color-neutral-400);
+    font-size: 0.875rem;
+}
+
+/* Feedback/instruction area */
+.kcInstructionClass,
+#kc-instruction,
+.instruction {
+    color: var(--color-neutral-300);
+    font-size: 0.9375rem;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 1.8;
+}
+
+/* Login page expired - add spacing between messages */
+#instruction1 {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#instruction1 br {
+    display: none;
+}
+
+/* Terms and conditions */
+.kcTermsText {
+    color: var(--color-neutral-400);
+    font-size: 0.8125rem;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Password visibility toggle */
+.kcFormPasswordVisibilityButtonClass {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--color-neutral-400);
+    cursor: pointer;
+    padding: 4px;
+}
+
+.kcFormPasswordVisibilityButtonClass:hover {
+    color: var(--color-neutral-200);
+}
+
+/* Separator - hide by default since social provider heading has its own */
+.kcFormDividerClass {
+    display: none !important;
+}
+
+/* ========================================
+   OTP Credential Selection (Login OTP page)
+   ======================================== */
+
+/* OTP credential list - tiles with radio buttons */
+.pf-c-tile__input,
+.kcLoginOTPListInputClass {
+    /* Hide the native radio but keep it accessible */
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The tile/card label that follows the hidden radio */
+.pf-c-tile,
+.kcLoginOTPListClass {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--color-neutral-800);
+    border: 1px solid var(--color-neutral-700);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.pf-c-tile:hover,
+.kcLoginOTPListClass:hover {
+    background: var(--color-neutral-700);
+    border-color: var(--color-neutral-600);
+}
+
+/* When the hidden radio is checked, style the adjacent label */
+.pf-c-tile__input:checked + .pf-c-tile,
+.kcLoginOTPListInputClass:checked + .kcLoginOTPListClass,
+input[type="radio"]:checked + .pf-c-tile,
+input[type="radio"]:checked + .kcLoginOTPListClass {
+    border-color: var(--color-primary-500);
+    background: rgba(212, 135, 44, 0.1);
+}
+
+/* Focus state for accessibility */
+.pf-c-tile__input:focus + .pf-c-tile,
+.kcLoginOTPListInputClass:focus + .kcLoginOTPListClass {
+    box-shadow: 0 0 0 3px rgba(212, 135, 44, 0.2);
+}
+
+/* Tile header (contains icon and title) */
+.pf-c-tile__header,
+.kcLoginOTPListItemHeaderClass {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Tile icon */
+.pf-c-tile__icon,
+.kcLoginOTPListItemIconBodyClass {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--color-neutral-700);
+    border-radius: 6px;
+    color: var(--color-primary-400);
+}
+
+.kcLoginOTPListItemIconClass {
+    font-size: 1rem;
+}
+
+/* Tile title */
+.pf-c-tile__title,
+.kcLoginOTPListItemTitleClass {
+    color: var(--color-neutral-100);
+    font-size: 0.9375rem;
+    font-weight: 500;
+}
+
+/* OTP text input field */
+.kcInputOTPClass {
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Required field indicator */
+.kcInputRequiredClass::after {
+    content: " *";
+    color: var(--color-error);
+}
+
+/* Disabled state */
+.kcInputClass:disabled,
+input:disabled,
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Help text */
+.kcInputHelperTextBeforeClass,
+.kcInputHelperTextAfterClass {
+    font-size: 0.8125rem;
+    color: var(--color-neutral-500);
+    margin-top: 6px;
+}
+
+/* Error state for inputs */
+.kcInputErrorMessageClass {
+    color: #fca5a5;
+    font-size: 0.8125rem;
+    margin-top: 6px;
+}
+
+input.pf-m-error,
+.kcInputClass.pf-m-error {
+    border-color: var(--color-error);
+}
+
+input.pf-m-error:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+/* Hide unnecessary PatternFly elements */
+.pf-c-login__main-footer-band,
+.pf-c-login__footer {
+    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .login-content {
+        max-width: 100%;
+    }
+
+    .form-card {
+        padding: 24px;
+        border-radius: 12px;
+    }
+
+    .page-title {
+        font-size: 1.125rem;
+    }
+
+    .blob-1 {
+        width: 400px;
+        height: 400px;
+    }
+
+    .blob-2 {
+        width: 350px;
+        height: 350px;
+    }
+
+    .blob-3 {
+        width: 300px;
+        height: 300px;
+    }
+}
